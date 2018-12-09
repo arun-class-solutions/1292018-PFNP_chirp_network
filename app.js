@@ -83,5 +83,17 @@ app.put("/chirps/:id", (req, res) => {
 });
 
 //Delete a chirp
+app.delete("/chirps/:id", (req, res) => {
+  // Step 1: Retrieve specific chirp via its ID from the database
+  // Step 2: Destroy specific chirp
+  // Step 3: Redirect back to GET /chirps
+  var chirpId = req.params.id;
+
+  models.Chirp.findById(chirpId).then((chirp) => {
+    chirp.destroy().then(() => {
+      res.redirect("/chirps");
+    });
+  });
+});
 
 app.listen(process.env.PORT || 3000);
