@@ -43,6 +43,16 @@ app.get("/chirps", (req, res) => {
 });
 
 //Create new chirp
+app.post("/chirps", (req, res) => {
+  // Step 1: Retrieve new chirp from the form submission
+  // Step 2: Create new record in the database with new chirp
+  // Step 3: Redirect to GET /chirps
+  var newChirp = req.body;
+
+  models.Chirp.create(newChirp).then(() => {
+    res.redirect("/chirps");
+  });
+});
 
 //Get specific chirp
 
